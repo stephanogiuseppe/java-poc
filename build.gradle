@@ -4,6 +4,7 @@ plugins {
 	id 'java'
 	id 'checkstyle'
 	id 'pmd'
+	id "io.freefair.lombok" version "5.0.0-rc4"
 }
 
 group = 'com.stephano'
@@ -19,6 +20,12 @@ dependencies {
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
+
+	compileOnly 'org.projectlombok:lombok:1.18.12'
+	annotationProcessor 'org.projectlombok:lombok:1.18.12'
+
+	testCompileOnly 'org.projectlombok:lombok:1.18.12'
+	testAnnotationProcessor 'org.projectlombok:lombok:1.18.12'
 }
 
 test {
@@ -37,3 +44,5 @@ pmd {
 	consoleOutput = true
 	ruleSetFiles = files("config/pmd/ruleset.xml")
 }
+
+apply plugin: "io.freefair.lombok"
